@@ -31,7 +31,7 @@
         data() {
             return {
                 options: [
-                    {title:"Song",artist:"Amugae",number:"00000"},
+                    {title:"Song",artist:"Artist",number:"00000"},
                 ],
                 tableShow: true,
             };
