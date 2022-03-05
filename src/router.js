@@ -10,8 +10,8 @@ const router = new VueRouter({
     mode: "history",
     routes: [
         {
-            path: "/", 
-            component: Home
+            path: "/:id", 
+            component: Home,
         },
         {
             path: "/about",

@@ -1,19 +1,18 @@
 <template>
     <div>
-    
         <table class="table table-bordered" v-if="tableShow">
             <tr>
                 <th>
-                    Title
+                    TitleInJapanese
                 </th>
                 <th>
-                    Artist
+                    TitleInKorean
                 </th>
                 <th>
-                    Number
+                    NumberInTJ
                 </th>
             </tr>
-            <tr :key="ind" v-for="(dat, ind) in Songs">
+            <tr :key="ind" v-for="(dat, ind) in SongsList">
                 <td>
                     {{dat.SongTitleInJapanese}}
                 </td>                
@@ -29,13 +28,11 @@
 </template>
 <script>
     export default {
+        name:'SongPage',
         data() {
             return {
-                Songs: [],
+                SongsList: [],
                 tableShow: true,
-                HOST:"https://cono-api.vercel.app",
-                userName: "KAMIZO",
-                userId: "",
             };
         },
 
@@ -46,39 +43,33 @@
         },
 
         methods: {
-            getData() {
-                alert(this.input1);
-            },
-            setData() {
-                this.input1 = "12345";
-            },
-            changeregion() {
-                alert(this.region);
-            },
-            getSongs() {
-                this.$axios
-                .get(this.HOST + "/user/" + this.userName, {
-                    headers: {'Content-Type': 'application/json'},
-                })
-                .then((res) => {
-                    console.log(res.data.UserId);
-                    console.log(res.data.Songs);
-                    this.Songs = res.data.Songs;
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-                .finally(() => {
-                    console.log("끝") 
-                });
-
+            getSongs(name) {
+                if (name != undefined) {
+                    this.$axios
+                    .get("https://cono-api.vercel.app/user/" + name, {
+                        headers: {'Content-Type': 'application/json'},
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                        this.SongsList = res.data.Songs;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        console.log("끝");
+                    });
+                }
+                else {
+                    console.log("User name Undefined");
+                }
             },
         },
         beforeCreate() {
             
         },
         created() {
-            this.getSongs();
+            this.getSongs(this.$route.params.id);
         },
         beforeMount() {
             
@@ -90,7 +81,7 @@
             
         },
         updated() {
-            
+    
         },
         beforeDestroy() {
             

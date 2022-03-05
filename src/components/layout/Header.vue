@@ -1,18 +1,33 @@
 <template>
     <div>
         <b-navbar toggleable="lg" type="dark" variant="info">
-            <b-navbar-brand href="#">{{ID}} 의 플레이리스트</b-navbar-brand>
+            <b-navbar-brand href="#">{{this.$route.params.id}} 의 플레이리스트</b-navbar-brand>
         </b-navbar>
     </div>
 </template>
 
 <script>
     export default {
-        name: "header",
+        name: "Header",
+
         data() {
             return {
-                ID: "ID",
+                
             }
+        },
+
+        methods: {
+            
+        },
+
+        created() {
+
+        },
+        updated() {
+
         }
     }
+
+    
+
 </script>
