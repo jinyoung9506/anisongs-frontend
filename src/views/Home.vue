@@ -1,5 +1,6 @@
 <template>
     <div>
+    
         <table class="table table-bordered" v-if="tableShow">
             <tr>
                 <th>
@@ -33,7 +34,8 @@
                 Songs: [],
                 tableShow: true,
                 HOST:"https://cono-api.vercel.app",
-                username: "KAMIZO",
+                userName: "KAMIZO",
+                userId: "",
             };
         },
 
@@ -54,18 +56,23 @@
                 alert(this.region);
             },
             getSongs() {
-            this.$axios
-            .get(this.HOST + "/user/" + this.username)
-            .then((res) => {
-                this.Songs = res.Songs;
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-            .finally(() => {
-                console.log("끝");
-            });
-        },
+                this.$axios
+                .get(this.HOST + "/user/" + this.userName, {
+                    headers: {'Content-Type': 'application/json'},
+                })
+                .then((res) => {
+                    console.log(res.data.UserId);
+                    console.log(res.data.Songs);
+                    this.Songs = res.data.Songs;
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    console.log("끝") 
+                });
+
+            },
         },
         beforeCreate() {
             

@@ -68,10 +68,10 @@
             }
         },
         beforeCreate() {
-            getSongs();
+
         },
         created() {
-            getSongs();
+    
         },
         beforeMount() {
             
