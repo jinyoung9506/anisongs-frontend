@@ -30,7 +30,24 @@
                     {v:"B",t:"Busan"},
                 ],
                 tableShow: true,
+                HOST:"https://cono-api.vercel.app",
+                username: "KAMIZO",
             };
+        },
+
+        getSongs() {
+            this.$axios
+            .get(HOST + "/user/" + username)
+            .then((res) => {
+                console.log(res.UserID);
+                console.log(res.Songs.ongTitleInKorean);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                console.log("끝");
+            });
         },
 
         watch: {
@@ -51,10 +68,10 @@
             }
         },
         beforeCreate() {
-            
+            getSongs();
         },
         created() {
-            
+            getSongs();
         },
         beforeMount() {
             

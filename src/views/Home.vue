@@ -12,15 +12,15 @@
                     Number
                 </th>
             </tr>
-            <tr :key="ind" v-for="(dat, ind) in options">
+            <tr :key="ind" v-for="(dat, ind) in Songs">
                 <td>
-                    {{dat.title}}
+                    {{dat.SongTitleInJapanese}}
                 </td>                
                 <td>
-                    {{dat.artist}}
+                    {{dat.SongTitleInKorean}}
                 </td>
                 <td>
-                    {{dat.number}}
+                    {{dat.SongNumberInTJ}}
                 </td>
             </tr>
         </table>
@@ -30,10 +30,10 @@
     export default {
         data() {
             return {
-                options: [
-                    {title:"Song",artist:"Artist",number:"00000"},
-                ],
+                Songs: [],
                 tableShow: true,
+                HOST:"https://cono-api.vercel.app",
+                username: "KAMIZO",
             };
         },
 
@@ -52,13 +52,26 @@
             },
             changeregion() {
                 alert(this.region);
-            }
+            },
+            getSongs() {
+            this.$axios
+            .get(this.HOST + "/user/" + this.username)
+            .then((res) => {
+                this.Songs = res.Songs;
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                console.log("끝");
+            });
+        },
         },
         beforeCreate() {
             
         },
         created() {
-            
+            this.getSongs();
         },
         beforeMount() {
             
