@@ -46,7 +46,7 @@
             getSongs(name) {
                 if (name != undefined) {
                     this.$axios
-                    .get("https://cono-api.vercel.app/user/" + name, {
+                    .get("" + name, {
                         headers: {'Content-Type': 'application/json'},
                     })
                     .then((res) => {

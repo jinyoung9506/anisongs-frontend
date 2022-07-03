@@ -30,7 +30,7 @@
                     {v:"B",t:"Busan"},
                 ],
                 tableShow: true,
-                HOST:"https://cono-api.vercel.app",
+                HOST:"",
                 username: "KAMIZO",
             };
         },
